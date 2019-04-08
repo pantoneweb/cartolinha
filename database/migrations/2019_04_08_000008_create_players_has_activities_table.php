@@ -25,13 +25,11 @@ class CreatePlayersHasActivitiesTable extends Migration
             $table->integer('player_id');
             $table->integer('activity_id');
             $table->integer('departure_id');
+            $table->timestamps();
 
             $table->index(["activity_id"], 'fk_players_has_activities_activities1_idx');
-
             $table->index(["departure_id"], 'fk_players_has_activities_departures1_idx');
-
             $table->index(["player_id"], 'fk_players_has_activities_players1_idx');
-
 
             $table->foreign('player_id', 'fk_players_has_activities_players1_idx')
                 ->references('id')->on('players')
@@ -55,8 +53,8 @@ class CreatePlayersHasActivitiesTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->tableName);
-     }
+    public function down()
+    {
+        Schema::dropIfExists($this->tableName);
+    }
 }

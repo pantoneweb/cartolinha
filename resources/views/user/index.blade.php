@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container-fluid">
@@ -6,10 +6,10 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <h3 class="panel-title">Planos</h3>
+                        <h3 class="panel-title">Usuários</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        {!! Button::primary('Novo Plano')->asLinkTo(route($prefixModuleControl . '.create'))->extraSmall() !!}
+                        {!! Button::primary('Novo Usuário')->asLinkTo(route('user.create'))->extraSmall() !!}
                     </div>
                 </div>
             </div>
@@ -20,10 +20,10 @@
             ->striped()
             ->condensed()
             ->hover()
-            ->callback('Ações', function($field, $model) use ($prefixModuleControl) {
+            ->callback('Ações', function($field, $model) {
 
-                $linkEdit = route($prefixModuleControl . '.edit',['award' => $model->id]);
-                $linkDelete = route($prefixModuleControl.'.destroy',['award' => $model->id]);
+                $linkEdit = route('user.edit',['id' => $model->id]);
+                $linkDelete = route('user.destroy',['id' => $model->id]);
                 $formDelete = FormBuilder::plain([
                     'id' => 'form-delete-' . $model->id,
                     'url' => $linkDelete,

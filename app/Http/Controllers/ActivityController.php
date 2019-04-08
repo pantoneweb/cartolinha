@@ -2,81 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms\ActivityForm;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $activity;
+
+    public function __construct(Activity $activity)
+    {
+        $this->activity = $activity;
+    }
+
     public function index()
     {
-        //
+        $data = $this->activity->paginate();
+        return view("activity.index", compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = $this->createForm(ActivityForm::class, [
+            'method' => 'POST',
+            'url' => route('activity.store')
+        ]);
+
+        return view('activity.create', compact('form'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $form = $this->createForm(ActivityForm::class);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        $this->activity->fill($request->all())->save();
+
+        return redirect()->route('activity.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = $this->createForm(ActivityForm::class, [
+            'url' => route('activity.update', ['id' => $id]),
+            'model' => $this->activity->find($id),
+            'method' => 'PUT',
+        ]);
+        return view('activity.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $form = $this->createForm(ActivityForm::class, [
+            'url' => route('activity.update', ['id' => $id]),
+            'model' => $this->activity->find($id),
+            'method' => 'PUT',
+        ]);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $this->activity->fill($request->all())->save();
+
+        return redirect()->route('activity.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

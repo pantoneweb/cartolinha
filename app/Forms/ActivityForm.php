@@ -6,7 +6,7 @@ class ActivityForm extends MainForm
 {
     public function buildForm()
     {
-        $this->add('account_id', 'text', [
+        $this->add('name', 'text', [
             'label' => 'Nome',
             'rules' => 'required'
         ])->add('score', 'number', [

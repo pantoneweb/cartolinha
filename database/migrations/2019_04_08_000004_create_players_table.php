@@ -24,8 +24,9 @@ class CreatePlayersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('position_id');
-            $table->string('name', 100);
-            $table->string('photo', 45);
+            $table->string('name');
+            $table->string('photo');
+            $table->timestamps();
 
             $table->index(["position_id"], 'fk_players_positions1_idx');
 

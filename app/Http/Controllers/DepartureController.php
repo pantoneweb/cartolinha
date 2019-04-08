@@ -2,81 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms\DepartureForm;
+use App\Models\Departure;
 use Illuminate\Http\Request;
 
 class DepartureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $departure;
+
+    public function __construct(Departure $departure)
+    {
+        $this->departure = $departure;
+    }
+
     public function index()
     {
-        //
+        $data = $this->departure->paginate();
+        return view("departure.index", compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = $this->createForm(DepartureForm::class, [
+            'method' => 'POST',
+            'url' => route('departure.store')
+        ]);
+
+        return view('departure.create', compact('form'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $form = $this->createForm(DepartureForm::class);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        $this->departure->fill($request->all())->save();
+
+        return redirect()->route('departure.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = $this->createForm(DepartureForm::class, [
+            'url' => route('departure.update', ['id' => $id]),
+            'model' => $this->departure->find($id),
+            'method' => 'PUT',
+        ]);
+        return view('departure.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $form = $this->createForm(DepartureForm::class, [
+            'url' => route('departure.update', ['id' => $id]),
+            'model' => $this->departure->find($id),
+            'method' => 'PUT',
+        ]);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $this->departure->fill($request->all())->save();
+
+        return redirect()->route('departure.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

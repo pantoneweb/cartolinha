@@ -25,6 +25,7 @@ class CreateUsersHasDeparturesTable extends Migration
             $table->integer('user_id');
             $table->integer('departure_id');
             $table->integer('player_id');
+            $table->timestamps();
 
             $table->index(["user_id"], 'fk_users_has_departures_users1_idx');
             $table->index(["departure_id"], 'fk_users_has_departures_departures1_idx');

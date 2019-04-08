@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -9,12 +9,12 @@
                         <h3 class="panel-title">Gerenciar Usuário</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        {!! Button::primary('Listar Usuários')->asLinkTo(route('admin.user.index'))->extraSmall() !!}
+                        {!! Button::primary('Listar Usuários')->asLinkTo(route('user.index'))->extraSmall() !!}
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                @include('modules.admin.user.form')
+                @include('user.form')
             </div>
         </div>
     </div>

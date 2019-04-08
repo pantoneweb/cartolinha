@@ -24,6 +24,7 @@ class CreateTeamsHasPlayersTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('team_id');
             $table->integer('player_id');
+            $table->timestamps();
 
             $table->index(["player_id"], 'fk_teams_has_players_players1_idx');
             $table->index(["team_id"], 'fk_teams_has_players_teams1_idx');

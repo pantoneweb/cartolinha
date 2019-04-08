@@ -2,81 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms\PlayerForm;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $player;
+
+    public function __construct(Player $player)
+    {
+        $this->player = $player;
+    }
+
     public function index()
     {
-        //
+        $data = $this->player->paginate();
+        return view("player.index", compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = $this->createForm(PlayerForm::class, [
+            'method' => 'POST',
+            'url' => route('player.store')
+        ]);
+
+        return view('player.create', compact('form'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $form = $this->createForm(PlayerForm::class);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        $this->player->fill($request->all())->save();
+
+        return redirect()->route('player.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = $this->createForm(PlayerForm::class, [
+            'url' => route('player.update', ['id' => $id]),
+            'model' => $this->player->find($id),
+            'method' => 'PUT',
+        ]);
+        return view('player.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $form = $this->createForm(PlayerForm::class, [
+            'url' => route('player.update', ['id' => $id]),
+            'model' => $this->player->find($id),
+            'method' => 'PUT',
+        ]);
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $this->player->fill($request->all())->save();
+
+        return redirect()->route('player.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

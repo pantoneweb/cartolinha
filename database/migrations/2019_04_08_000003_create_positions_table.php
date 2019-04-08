@@ -23,8 +23,9 @@ class CreatePositionsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 45);
+            $table->string('name');
             $table->unique(["name"], 'position_name_UNIQUE');
+            $table->timestamps();
         });
     }
 

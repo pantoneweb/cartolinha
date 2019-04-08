@@ -8,13 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model implements TableInterface
 {
     protected $fillable = [
-        'account_id',
         'name',
-        'value',
-        'qt_notes',
-        'qt_companies',
-        'qt_users',
-        'public'
+        'score',
     ];
 
     public function getTableHeaders()

@@ -28,6 +28,7 @@ class CreateDeparturesTable extends Migration
             $table->integer('home_team_goals')->default('0');
             $table->integer('guest_team_goals')->default('0');
             $table->dateTime('datetime');
+            $table->timestamps();
 
             $table->index(["guest_team_id"], 'fk_departures_teams1_idx');
             $table->index(["home_team_id"], 'fk_departures_teams_idx');

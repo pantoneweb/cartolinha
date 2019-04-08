@@ -12,9 +12,9 @@ class UserForm extends MainForm
         $this->add('name', 'text', [
             'label' => 'Nome',
             'rules' => 'required'
-        ])->add('name', 'email', [
+        ])->add('email', 'email', [
             'label' => 'E-mail',
-            'rules' => "required|max:255",
+            'rules' => "required|email|max:255",
             'attr' => ['maxlength' => '255']
         ]);
 

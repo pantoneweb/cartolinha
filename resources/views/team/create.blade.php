@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -9,12 +9,12 @@
                         <h3 class="panel-title">Gerenciar Time</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        {!! Button::primary('Listar Times')->asLinkTo(route('admin.team.index'))->extraSmall() !!}
+                        {!! Button::primary('Listar Times')->asLinkTo(route('team.index'))->extraSmall() !!}
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                @include('modules.admin.team.form')
+                @include('team.form')
             </div>
         </div>
     </div>
