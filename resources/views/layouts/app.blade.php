@@ -21,6 +21,7 @@
 </head>
 <body>
 <div id="app">
+    {{--    @include('layouts.nav-bar-admin')--}}
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -35,7 +36,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
+                    @guest
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('team.index') }}">{{ __('Times') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('player.index') }}">{{ __('Jogadores') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('activity.index') }}">{{ __('Atividades') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('departure.index') }}">{{ __('Partidas') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">{{ __('Usuários') }}</a>
+                        </li>
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -47,7 +65,7 @@
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar Me') }}</a>
                             </li>
                         @endif
                     @else
