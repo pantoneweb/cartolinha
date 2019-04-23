@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Cartolinha') }}
+                <img src="/img/logo_cartolinha.png" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -93,8 +93,9 @@
             </div>
         </div>
     </nav>
-
-    <main class="py-4">
+    <br>
+    <br>
+    <main class="container">
         @yield('content')
     </main>
 </div>

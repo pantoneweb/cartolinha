@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="col-xl-12 col-sm-6 col-sm-offset-3">
         {!! form_start($form) !!}
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xl-12">
                 <div class="row">
-                    <div class="col-xs-12 ">
+                    <div class="col-xl-12 ">
                         {!! form_row($form->name) !!}
                     </div>
-                    <div class="col-xs-12 ">
+                    <div class="col-xl-12 ">
                         {!! form_row($form->email) !!}
                     </div>
                 </div>

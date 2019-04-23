@@ -14,7 +14,7 @@ class TeamForm extends MainForm
             'rules' => "required|max:255",
             'attr' => ['maxlength' => '255']
         ])->add('photo', 'file', [
-            'label' => 'Valor',
+            'label' => 'Foto',
             'rules' => "required"
         ]);
 

@@ -2,10 +2,8 @@
 
 namespace App\Forms;
 
-/**
- * Class PlanForm
- * @package App\Forms\User
- */
+use App\Models\Position;
+
 class PlayerForm extends MainForm
 {
     /**
@@ -17,8 +15,12 @@ class PlayerForm extends MainForm
             'label' => 'Nome',
             'rules' => "required|max:255",
             'attr' => ['maxlength' => '255']
+        ])->add('position_id', 'select', [
+            'label' => 'Posição',
+            'rules' => "required",
+            'choices' => Position::all()->pluck('id', 'title')->all()
         ])->add('photo', 'file', [
-            'label' => 'Valor',
+            'label' => 'Foto',
             'rules' => "required"
         ]);
 

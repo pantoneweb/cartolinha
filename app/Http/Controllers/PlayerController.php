@@ -37,7 +37,15 @@ class PlayerController extends Controller
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-        $this->player->fill($request->all())->save();
+
+        $params = $request->all();
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $name = time() . '.' . $request->photo->extension();
+            $request->photo->storeAs('public/player', $name);
+            $params['photo'] = $name;
+        }
+
+        $this->player->fill($params)->save();
 
         return redirect()->route('player.index');
     }
@@ -63,7 +71,14 @@ class PlayerController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $this->player->fill($request->all())->save();
+        $params = $request->all();
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $name = time() . '.' . $request->photo->extension();
+            $request->photo->storeAs('public/player', $name);
+            $params['photo'] = $name;
+        }
+
+        $this->player->fill($params)->save();
 
         return redirect()->route('player.index');
     }

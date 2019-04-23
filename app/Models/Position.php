@@ -5,16 +5,15 @@ namespace App\Models;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model implements TableInterface
+class Position extends Model implements TableInterface
 {
     protected $fillable = [
-        'name',
-        'photo'
+        'name'
     ];
 
     public function getTableHeaders()
     {
-        return ['ID', 'Foto', 'Nome'];
+        return ['ID', 'Nome'];
     }
 
     public function getValueForHeader($header)
@@ -22,8 +21,6 @@ class Team extends Model implements TableInterface
         switch ($header) {
             case 'ID':
                 return $this->id;
-            case 'Foto':
-                return '<img src="' . url("team/{$this->photo}") . '" width="50">';
             case 'Nome':
                 return $this->name;
             default:

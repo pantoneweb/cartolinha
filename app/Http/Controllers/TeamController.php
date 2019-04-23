@@ -37,7 +37,15 @@ class TeamController extends Controller
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-        $this->team->fill($request->all())->save();
+
+        $params = $request->all();
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $name = time() . '.' . $request->photo->extension();
+            $request->photo->storeAs('public/team', $name);
+            $params['photo'] = $name;
+        }
+
+        $this->team->fill($params)->save();
 
         return redirect()->route('team.index');
     }
@@ -63,7 +71,14 @@ class TeamController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $this->team->fill($request->all())->save();
+        $params = $request->all();
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $name = time() . '.' . $request->photo->extension();
+            $request->photo->storeAs('public/team', $name);
+            $params['photo'] = $name;
+        }
+
+        $this->team->fill($params)->save();
 
         return redirect()->route('team.index');
     }
