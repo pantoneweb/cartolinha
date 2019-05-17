@@ -23,19 +23,8 @@
             ->callback('Ações', function($field, $model) {
 
                 $linkEdit = route('departure.edit',['id' => $model->id]);
-                $linkDelete = route('departure.destroy',['id' => $model->id]);
-                $formDelete = FormBuilder::plain([
-                    'id' => 'form-delete-' . $model->id,
-                    'url' => $linkDelete,
-                    'method' => 'DELETE',
-                    'style' => 'display:none'
-                ]);
-
                 $links = '';
-                $links .= Button::link('Editar')->asLinkTo($linkEdit)->extraSmall() . ' | ';
-                $links .= Button::link('Excluir')->addAttributes(['onclick' => "deleteRegister(\"form-delete-{$model->id}\");"])->small();
-                $links .= form($formDelete);
-
+                $links .= Button::link('Editar')->asLinkTo($linkEdit)->extraSmall();
                 return $links;
             })
             !!}

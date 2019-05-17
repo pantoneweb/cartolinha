@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\Departure;
+use App\Models\PlayerHasActivity;
 use App\Models\Team;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DepartureController extends Controller
@@ -24,11 +26,6 @@ class DepartureController extends Controller
 
     public function create()
     {
-//        $form = $this->createForm(DepartureForm::class, [
-//            'method' => 'POST',
-//            'url' => route('departure.store')
-//        ]);
-
         $x = 0;
         $teams = Team::with('players')->inRandomOrder()->get();
         $activities = Activity::get();
@@ -37,11 +34,40 @@ class DepartureController extends Controller
 
     public function store(Request $request)
     {
-        $form = $this->createForm(DepartureForm::class);
-        if (!$form->isValid()) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        $departure = [];
+        foreach ($request->get('departure') as $teams) {
+            $departure[] = key($teams);
         }
-        $this->departure->fill($request->all())->save();
+
+        $departure1 = Departure::create([
+            'home_team_id' => $departure[0],
+            'guest_team_id' => $departure[1],
+            'home_team_goals' => 0,
+            'guest_team_goals' => 0,
+            'datetime' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        $departure2 = Departure::create([
+            'home_team_id' => $departure[2],
+            'guest_team_id' => $departure[3],
+            'home_team_goals' => 0,
+            'guest_team_goals' => 0,
+            'datetime' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        foreach ($request->get('departure') as $idx => $teams) {
+            foreach ($teams as $player => $activies) {
+                foreach ($activies as $activity) {
+                    PlayerHasActivity::create([
+                        'player_id' => $player,
+                        'activity_id' => $activity,
+                        'departure_id' => ($idx < 1) ? $departure1->id : $departure2->id,
+                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                    ]);
+                }
+            }
+        }
 
         return redirect()->route('departure.index');
     }

@@ -1,3 +1,5 @@
+<form method="post" action="{{ route('departure.store') }}">
+    @csrf
 <br>
 @foreach($teams as $team)
     @if($x == 0)
@@ -49,3 +51,6 @@
         @endphp
     @endif
 @endforeach
+    <hr>
+    <button type="submit" class="btn btn-info">Salvar</button>
+</form>

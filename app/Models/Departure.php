@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Departure extends Model implements TableInterface
 {
     protected $fillable = [
-        'account_id',
-        'name',
-        'value',
-        'qt_notes',
-        'qt_companies',
-        'qt_users',
-        'public'
+        'home_team_id',
+        'guest_team_id',
+        'home_team_goals',
+        'guest_team_goals',
+        'datetime'
     ];
+
+    public function home_team(){
+        return $this->hasOne(Team::class, 'id', 'home_team_id');
+    }
+
+    public function guest_team(){
+        return $this->hasOne(Team::class, 'id', 'guest_team_id');
+    }
 
     public function getTableHeaders()
     {
-        return ['ID', 'Nome', 'Valor', 'Quant. de notas', 'Quant. de usuários', 'Quant. de empresas', 'Exibe no site'];
+        return ['ID', 'Time da Casa', 'Time Convidado'];
     }
 
     public function getValueForHeader($header)
@@ -27,18 +33,10 @@ class Departure extends Model implements TableInterface
         switch ($header) {
             case 'ID':
                 return $this->id;
-            case 'Nome':
-                return $this->name;
-            case 'Valor':
-                return \Helpers::currency($this->value);
-            case 'Quant. de notas':
-                return $this->qt_notes . ' nota(s)';
-            case 'Quant. de usuários':
-                return $this->qt_users . ' usuário(s)';
-            case 'Quant. de empresas':
-                return $this->qt_companies . ' empresa(s)';
-            case 'Exibe no site':
-                return ($this->public) ? 'Sim' : 'Não';
+            case 'Time da Casa':
+                return $this->home_team->name;
+            case 'Time Convidado':
+                return $this->guest_team->name;
             default:
                 return '';
         }
