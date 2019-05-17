@@ -9,8 +9,13 @@
 
     <title>{{ config('app.name', 'Cartolinha') }}</title>
 
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -98,6 +103,15 @@
     <main class="container">
         @yield('content')
     </main>
+
+    <script>
+        $('document').ready(function () {
+            $('.add').on('click', function () {
+                var $select = $("select[name='"+$(this).attr('data-select')+"']").first().clone();
+                $("select[name='"+$(this).attr('data-select')+"']").parent().append($select);
+            });
+        });
+    </script>
 </div>
 </body>
 </html>

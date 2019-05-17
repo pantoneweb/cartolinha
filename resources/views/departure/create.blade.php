@@ -6,15 +6,15 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                        <h3 class="panel-title">Gerenciar Plano</h3>
+                        <h3 class="panel-title">Gerenciar Partidas</h3>
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        {!! Button::primary('Listar Planos')->asLinkTo(route('plan.index'))->extraSmall() !!}
+                        {!! Button::primary('Listar Partidas')->asLinkTo(route('departure.index'))->extraSmall() !!}
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                @include('plan.form')
+                @include('departure.form')
             </div>
         </div>
     </div>

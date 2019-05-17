@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\DepartureForm;
+use App\Models\Activity;
 use App\Models\Departure;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class DepartureController extends Controller
@@ -23,12 +24,15 @@ class DepartureController extends Controller
 
     public function create()
     {
-        $form = $this->createForm(DepartureForm::class, [
-            'method' => 'POST',
-            'url' => route('departure.store')
-        ]);
+//        $form = $this->createForm(DepartureForm::class, [
+//            'method' => 'POST',
+//            'url' => route('departure.store')
+//        ]);
 
-        return view('departure.create', compact('form'));
+        $x = 0;
+        $teams = Team::with('players')->inRandomOrder()->get();
+        $activities = Activity::get();
+        return view('departure.create', compact('teams', 'activities', 'x'));
     }
 
     public function store(Request $request)

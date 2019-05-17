@@ -12,6 +12,11 @@ class Team extends Model implements TableInterface
         'photo'
     ];
 
+    public function players()
+    {
+        return $this->hasMany(Player::class)->with('position');
+    }
+
     public function getTableHeaders()
     {
         return ['ID', 'Foto', 'Nome'];
