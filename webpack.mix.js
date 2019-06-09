@@ -12,12 +12,18 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .copy('resources/sass/site/img', 'public/img')
+    .copy('resources/sass/site/fonts', 'public/fonts')
+    .copy('resources/sass/site/js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/site.scss', 'public/css')
+    .version();
 
 mix.browserSync({
     proxy: 'localhost:8000',
     files: [
         'resources/sass/app.scss',
+        'resources/sass/site.scss',
         'public/assets/site/css/app.css',   // Generated .css file
         'public/assets/admin/css/app.css',  // Generated .css file
         'public/assets/site/js/app.js',     // Generated .js file
