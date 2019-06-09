@@ -28,7 +28,10 @@ class TeamController extends Controller
             'url' => route('team.store')
         ]);
 
-        return view('team.create', compact('form'));
+        $name = 'Times';
+        $route = 'team.index';
+        $formTemplate = 'team.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function store(Request $request)
@@ -57,14 +60,19 @@ class TeamController extends Controller
             'model' => $this->team->find($id),
             'method' => 'PUT',
         ]);
-        return view('team.edit', compact('form'));
+
+        $name = 'Times';
+        $route = 'team.index';
+        $formTemplate = 'team.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function update(Request $request, $id)
     {
+        $model = $this->team->find($id);
         $form = $this->createForm(TeamForm::class, [
             'url' => route('team.update', ['id' => $id]),
-            'model' => $this->team->find($id),
+            'model' => $model,
             'method' => 'PUT',
         ]);
         if (!$form->isValid()) {
@@ -78,7 +86,7 @@ class TeamController extends Controller
             $params['photo'] = $name;
         }
 
-        $this->team->fill($params)->save();
+        $model->fill($params)->save();
 
         return redirect()->route('team.index');
     }

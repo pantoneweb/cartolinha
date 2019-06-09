@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Team extends Model implements TableInterface
 {
@@ -28,7 +29,7 @@ class Team extends Model implements TableInterface
             case 'ID':
                 return $this->id;
             case 'Foto':
-                return '<img src="' . url("team/{$this->photo}") . '" width="50">';
+                return '<img src="' . Storage::url("team/{$this->photo}") . '" width="50">';
             case 'Nome':
                 return $this->name;
             default:

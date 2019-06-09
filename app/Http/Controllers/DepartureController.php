@@ -29,39 +29,47 @@ class DepartureController extends Controller
         $x = 0;
         $teams = Team::with('players')->inRandomOrder()->get();
         $activities = Activity::get();
-        return view('departure.create', compact('teams', 'activities', 'x'));
+        $name = 'Rodadas';
+        $route = 'departure.index';
+        $formTemplate = 'departure.form';
+        return view('partials.form-template', compact('name', 'route', 'teams', 'activities', 'x', 'form', 'formTemplate'));
     }
 
     public function store(Request $request)
     {
         $departure = [];
-        foreach ($request->get('departure') as $teams) {
-            $departure[] = key($teams);
+        foreach (array_keys($request->get('departure')) as $teamId) {
+            $departure[] = [
+                'teamId' => $teamId,
+                'data' => $request->get('departure')[$teamId]
+            ];
         }
 
         $departure1 = Departure::create([
-            'home_team_id' => $departure[0],
-            'guest_team_id' => $departure[1],
-            'home_team_goals' => 0,
-            'guest_team_goals' => 0,
+            'home_team_id' => $departure[0]['teamId'],
+            'guest_team_id' => $departure[1]['teamId'],
+            'home_team_goals' => $departure[0]['data']['gols'],
+            'guest_team_goals' => $departure[1]['data']['gols'],
             'datetime' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         $departure2 = Departure::create([
-            'home_team_id' => $departure[2],
-            'guest_team_id' => $departure[3],
-            'home_team_goals' => 0,
-            'guest_team_goals' => 0,
+            'home_team_id' => $departure[2]['teamId'],
+            'guest_team_id' => $departure[3]['teamId'],
+            'home_team_goals' => $departure[2]['data']['gols'],
+            'guest_team_goals' => $departure[3]['data']['gols'],
             'datetime' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        foreach ($request->get('departure') as $idx => $teams) {
-            foreach ($teams as $player => $activies) {
-                foreach ($activies as $activity) {
+        foreach ($departure as $idx => $team) {
+            foreach ($team['data'] as $player => $activities) {
+                if ($player == "gols")
+                    continue;
+                foreach ($activities as $activity) {
                     PlayerHasActivity::create([
                         'player_id' => $player,
                         'activity_id' => $activity,
-                        'departure_id' => ($idx < 1) ? $departure1->id : $departure2->id,
+                        'departure_id' => ($idx < 2) ? $departure1->id : $departure2->id,
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     ]);

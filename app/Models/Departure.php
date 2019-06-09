@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Departure extends Model implements TableInterface
 {
@@ -15,11 +16,13 @@ class Departure extends Model implements TableInterface
         'datetime'
     ];
 
-    public function home_team(){
+    public function home_team()
+    {
         return $this->hasOne(Team::class, 'id', 'home_team_id');
     }
 
-    public function guest_team(){
+    public function guest_team()
+    {
         return $this->hasOne(Team::class, 'id', 'guest_team_id');
     }
 
@@ -34,9 +37,13 @@ class Departure extends Model implements TableInterface
             case 'ID':
                 return $this->id;
             case 'Time da Casa':
-                return $this->home_team->name;
+                return '<img class="img-fluid rounded" style="height: 30px;"
+                                         src="' . Storage::url("team/{$this->home_team->photo}") . '"
+                                         lazy="loaded"> ' . $this->home_team->name;
             case 'Time Convidado':
-                return $this->guest_team->name;
+                return '<img class="img-fluid rounded" style="height: 30px;"
+                                         src="' . Storage::url("team/{$this->guest_team->photo}") . '"
+                                         lazy="loaded"> ' . $this->guest_team->name;
             default:
                 return '';
         }

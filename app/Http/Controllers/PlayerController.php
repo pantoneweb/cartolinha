@@ -28,7 +28,10 @@ class PlayerController extends Controller
             'url' => route('player.store')
         ]);
 
-        return view('player.create', compact('form'));
+        $name = 'Jogadores';
+        $route = 'player.index';
+        $formTemplate = 'player.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function store(Request $request)
@@ -57,7 +60,10 @@ class PlayerController extends Controller
             'model' => $this->player->find($id),
             'method' => 'PUT',
         ]);
-        return view('player.edit', compact('form'));
+        $name = 'Jogadores';
+        $route = 'player.index';
+        $formTemplate = 'player.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function update(Request $request, $id)

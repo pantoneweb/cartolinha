@@ -25,7 +25,7 @@ class Activity extends Model implements TableInterface
             case 'Nome':
                 return $this->name;
             case 'Pontuação':
-                return $this->score;
+                return $this->score . ' Pontos';
             default:
                 return '';
         }

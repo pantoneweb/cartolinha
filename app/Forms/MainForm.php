@@ -13,12 +13,12 @@ class MainForm extends Form
     public function buildForm()
     {
         $this->add('submit', 'submit', [
-            'attr' => ['class' => 'btn btn-info'],
+            'attr' => ['class' => 'btn btn-primary'],
             'label' => 'Salvar'
         ]);
         $this->add('cancel', 'button', [
             'attr' => [
-                'class' => 'btn btn-default',
+                'class' => 'btn btn-neutral',
                 'onclick' => 'javascript: ((!confirm("Deseja cancelar esta operação?")) || window.history.back());',
             ],
             'label' => 'Cancelar'

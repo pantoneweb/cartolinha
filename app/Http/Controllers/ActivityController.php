@@ -27,8 +27,10 @@ class ActivityController extends Controller
             'method' => 'POST',
             'url' => route('activity.store')
         ]);
-
-        return view('activity.create', compact('form'));
+        $name = 'Atividade de Jogadores';
+        $route = 'activity.index';
+        $formTemplate = 'activity.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function store(Request $request)
@@ -49,7 +51,10 @@ class ActivityController extends Controller
             'model' => $this->activity->find($id),
             'method' => 'PUT',
         ]);
-        return view('activity.edit', compact('form'));
+        $name = 'Atividade de Jogadores';
+        $route = 'activity.index';
+        $formTemplate = 'activity.form';
+        return view('partials.form-template', compact('name', 'route', 'form', 'formTemplate'));
     }
 
     public function update(Request $request, $id)

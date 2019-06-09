@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Player extends Model implements TableInterface
 {
@@ -29,7 +30,7 @@ class Player extends Model implements TableInterface
             case 'ID':
                 return $this->id;
             case 'Foto':
-                return '<img src="" width="50">';
+                return '<img src="' . Storage::url("player/{$this->photo}") . '" width="50">';
             case 'Posição':
                 return $this->position->name;
             case 'Nome':

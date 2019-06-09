@@ -18,10 +18,9 @@ class PlayerForm extends MainForm
         ])->add('position_id', 'select', [
             'label' => 'Posição',
             'rules' => "required",
-            'choices' => Position::all()->pluck('id', 'title')->all()
+            'choices' => Position::all()->pluck('name', 'id')->all()
         ])->add('photo', 'file', [
-            'label' => 'Foto',
-            'rules' => "required"
+            'label' => 'Foto'
         ]);
 
         parent::buildForm();
