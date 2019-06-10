@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +29,7 @@ class Departure extends Model implements TableInterface
 
     public function getTableHeaders()
     {
-        return ['ID', 'Time da Casa', 'Time Convidado'];
+        return ['ID', 'Time da Casa', 'Time Convidado', 'Gols time da Casa', 'Gols time convidado', 'Data Partida'];
     }
 
     public function getValueForHeader($header)
@@ -44,6 +45,12 @@ class Departure extends Model implements TableInterface
                 return '<img class="img-fluid rounded" style="height: 30px;"
                                          src="' . Storage::url("team/{$this->guest_team->photo}") . '"
                                          lazy="loaded"> ' . $this->guest_team->name;
+            case 'Gols time da Casa':
+                return $this->home_team_goals;
+            case 'Gols time convidado':
+                return $this->guest_team_goals;
+            case 'Data Partida':
+                return Carbon::create($this->datetime, 'Y-m-d H:i:s')->format('d/m/Y H:i');
             default:
                 return '';
         }

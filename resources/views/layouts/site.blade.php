@@ -22,7 +22,7 @@
                     <div class="col-md-5 col-sm-12 col-xs-12">
                         <a href="#">
                             <div class="main-logo">
-                                <img src="img/main-logo.png" width="85" height="75"/>
+                                <img src="img/main-logo.png" height="65"/>
                             </div>
                         </a>
                     </div>
@@ -32,10 +32,10 @@
                                 <li><a href="#" style="color: #FFFFFF !important;"><b>HOME</b></a></li>
                                 <li><a href="#" style="color: #FFFFFF !important;"><b>TIMES</b></a></li>
                                 <li><a href="#" style="color: #FFFFFF !important;"><b>ESCALAÇÃO</b></a></li>
-                                <li><a href="#" style="color: #FFFFFF !important;"><b>RESULTADOS</b></a></li>
-                                <li><a href="#" style="color: #FFFFFF !important;"><b>SHOP </b></a></li>
-                                <li><a href="#" style="color: #FFFFFF !important;"><b>BLOG</b></a></li>
-                                <li><a href="#" style="color: #FFFFFF !important;"><b>LOGIN</b></a></li>
+                                <li><a href="/results" style="color: #FFFFFF !important;"><b>RESULTADOS</b></a></li>
+                                <li><a href="/contract" style="color: #FFFFFF !important;"><b>SHOP </b></a></li>
+                                <li><a href="/user/login" style="color: #FFFFFF !important;"><b>LOGIN</b></a></li>
+                                <li><a href="/user/register" style="color: #FFFFFF !important;"><b>REGISTRAR</b></a></li>
                             </ul>
                         </div>
                     </div>

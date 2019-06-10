@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <a class="navbar-brand" href="{{ url('/') }}">
-        <b>Área Administrativa</b>
+        <b>Área Usuário</b>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -14,19 +14,7 @@
             @guest
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('team.index') }}">{{ __('Times') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('player.index') }}">{{ __('Jogadores') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('activity.index') }}">{{ __('Atividades') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('departure.index') }}">{{ __('Partidas') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.index') }}">{{ __('Usuários') }}</a>
+                    <a class="nav-link" href="">Escalar</a>
                 </li>
             @endguest
         </ul>

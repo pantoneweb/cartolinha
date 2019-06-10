@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Seja bem vindo administrador!
+                    Seja bem vindo {{ Auth::user()->name }}!
                 </div>
             </div>
         </div>

@@ -19,19 +19,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-secondary">
+
+@if( Request()->route()->getPrefix() == '/admin')
     @include('layouts.nav-bar-admin')
+@else
+    @include('layouts.nav-bar-site')
+@endif
 
-    <div class="py-5">
-        @yield('content')
-    </div>
+<div class="py-5">
+    @yield('content')
+</div>
 
-    <script>
-        $('document').ready(function () {
-            $('.add').on('click', function () {
-                var $select = $("select[name='" + $(this).attr('data-select') + "']").first().clone();
-                $("select[name='" + $(this).attr('data-select') + "']").parent().append($select);
-            });
+<script>
+    $('document').ready(function () {
+        $('.add').on('click', function () {
+            var $select = $("select[name='" + $(this).attr('data-select') + "']").first().clone();
+            $("select[name='" + $(this).attr('data-select') + "']").parent().append($select);
         });
-    </script>
+    });
+</script>
 </body>
 </html>

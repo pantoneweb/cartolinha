@@ -45,7 +45,7 @@
                                         <option value="">Selecione</option>
                                         @foreach($activities as $activity)
                                             <option value="{{ $activity->id }}">{{ $activity->name }}
-                                                ({{ $activity->score }})
+                                                ({{ $activity->score }} Pontos)
                                             </option>
                                         @endforeach
                                     </select>

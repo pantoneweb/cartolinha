@@ -11,15 +11,27 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/', 'SiteController@index');
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
-    Route::resource('team', 'TeamController');
-    Route::resource('player', 'PlayerController');
-    Route::resource('departure', 'DepartureController');
-    Route::resource('user', 'UserController');
-    Route::resource('activity', 'ActivityController');
+
+    Auth::routes();
+
+    Route::group(['middleware' => ['auth:admin']], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('team', 'TeamController');
+        Route::resource('player', 'PlayerController');
+        Route::resource('departure', 'DepartureController');
+        Route::resource('user', 'UserController');
+        Route::resource('activity', 'ActivityController');
+    });
+});
+
+Route::prefix('user')->group(function () {
+
+    Auth::routes();
+
+    Route::group(['middleware' => ['auth:user']], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
 });
