@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'SiteController@index');
+Route::get('/results', 'ClimbController@results')->name('climb.results');
 
 Route::prefix('admin')->group(function () {
 
@@ -33,7 +34,6 @@ Route::prefix('user')->group(function () {
 
     Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/home', 'HomeController@index')->name('home');
-
         Route::resource('climb', 'ClimbController');
     });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Bootstrapper\Interfaces\TableInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,11 @@ class Departure extends Model implements TableInterface
     public function has_players()
     {
         return $this->belongsToMany(Player::class, 'users_has_departures', 'departure_id', 'player_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_has_departures', 'departure_id', 'player_id');
     }
 
     public function getTableHeaders()

@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ClimbController extends Controller
 {
@@ -67,13 +68,11 @@ class ClimbController extends Controller
         return redirect()->route('climb.index');
     }
 
-    public function update(Request $request, $id)
+    public function results()
     {
-        return redirect()->route('climb.index');
-    }
+        $sql = "SELECT DISTINCT user_id FROM (SELECT uha2.user_id FROM users_has_departures as uha2 INNER JOIN users as u1 ON u1.id = uha2.user_id ORDER BY user_id) t";
+        $users = DB::select($sql);
 
-    public function destroy($id)
-    {
-        //
+        return view("results", compact('users'));
     }
 }
