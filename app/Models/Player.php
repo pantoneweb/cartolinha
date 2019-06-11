@@ -10,6 +10,7 @@ class Player extends Model implements TableInterface
 {
     protected $fillable = [
         'position_id',
+        'position_id',
         'name',
         'photo'
     ];
