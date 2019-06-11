@@ -17,7 +17,7 @@ class PlayerController extends Controller
 
     public function index()
     {
-        $data = $this->player->paginate();
+        $data = $this->player->paginate(100);
         return view("player.index", compact('data'));
     }
 

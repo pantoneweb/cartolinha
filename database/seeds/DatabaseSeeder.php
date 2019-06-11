@@ -77,74 +77,74 @@ class DatabaseSeeder extends Seeder
         Activity::create(['name' => 'Cartão amarelo', 'score' => '-2']);
         Activity::create(['name' => 'Cartão Vermelho', 'score' => '-5']);
 
-        $team1 = Team::create(['id' => 1, 'name' => 'Corinthans']);
+        $team1 = Team::create(['id' => 1, 'name' => 'Corinthans', 'photo' => 'cor/logo.png']);
         $dados = [
-            ['position_id' => '6', 'name' => 'Carile', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Boseli', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Clayson', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Vagner Love', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Sornoza', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Junior Urso', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Ralf', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Danilo Avelar', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Henrique', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Manoel', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Michel', 'photo' => ''],
-            ['position_id' => '1', 'name' => 'Cassio', 'photo' => ''],
+            ['position_id' => '6', 'name' => 'Carile', 'photo' => 'cor/cariele.png'],
+            ['position_id' => '5', 'name' => 'Boseli', 'photo' => 'cor/mauro.png'],
+            ['position_id' => '5', 'name' => 'Clayson', 'photo' => 'cor/clayson.png'],
+            ['position_id' => '5', 'name' => 'Vagner Love', 'photo' => 'cor/vagner.png'],
+            ['position_id' => '4', 'name' => 'Sornoza', 'photo' => 'cor/sornoza.png'],
+            ['position_id' => '4', 'name' => 'Junior Urso', 'photo' => 'cor/junior.png'],
+            ['position_id' => '4', 'name' => 'Ralf', 'photo' => 'cor/ralf.png'],
+            ['position_id' => '3', 'name' => 'Danilo Avelar', 'photo' => 'cor/danilo.png'],
+            ['position_id' => '2', 'name' => 'Henrique', 'photo' => 'cor/henrique.png'],
+            ['position_id' => '2', 'name' => 'Manoel', 'photo' => 'cor/manoel.png'],
+            ['position_id' => '3', 'name' => 'Michel', 'photo' => 'cor/michel.png'],
+            ['position_id' => '1', 'name' => 'Cassio', 'photo' => 'cor/cassio.png'],
         ];
         foreach ($dados as $dado)
             $team1->players()->create($dado);
 
-        $team2 = Team::create(['id' => 2, 'name' => 'São Paulo']);
+        $team2 = Team::create(['id' => 2, 'name' => 'São Paulo', 'photo' => 'sp/logo.png']);
         $dados = [
-            ['position_id' => '6', 'name' => 'Cuca', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Pablo', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Gonzalo Carneiro', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Hudson', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Hermanes', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Antony', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Luan', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Reinaldo', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Igor Vinicius', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Anderson Martins', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Arboleda', 'photo' => ''],
-            ['position_id' => '1', 'name' => 'Tiago Volpi', 'photo' => ''],
+            ['position_id' => '6', 'name' => 'Cuca', 'photo' => 'sp/cuca.png'],
+            ['position_id' => '5', 'name' => 'Pablo', 'photo' => 'sp/pablo.png'],
+            ['position_id' => '5', 'name' => 'Gonzalo Carneiro', 'photo' => 'sp/gonzalo.png'],
+            ['position_id' => '4', 'name' => 'Hudson', 'photo' => 'sp/hudson.png'],
+            ['position_id' => '4', 'name' => 'Hermanes', 'photo' => 'sp/hernanes.png'],
+            ['position_id' => '5', 'name' => 'Antony', 'photo' => 'sp/antony.png'],
+            ['position_id' => '4', 'name' => 'Luan', 'photo' => 'sp/luan.png'],
+            ['position_id' => '3', 'name' => 'Reinaldo', 'photo' => 'sp/reinaldo.png'],
+            ['position_id' => '3', 'name' => 'Igor Vinicius', 'photo' => 'sp/igor.png'],
+            ['position_id' => '2', 'name' => 'Anderson Martins', 'photo' => 'sp/anderson.png'],
+            ['position_id' => '2', 'name' => 'Arboleda', 'photo' => 'sp/arboleda.png'],
+            ['position_id' => '1', 'name' => 'Tiago Volpi', 'photo' => 'sp/tiago.png'],
         ];
         foreach ($dados as $dado)
             $team2->players()->create($dado);
 
-        $team3 = Team::create(['id' => 3, 'name' => 'Palmeiras']);
+        $team3 = Team::create(['id' => 3, 'name' => 'Palmeiras', 'photo' => 'pal/logo.png']);
         $dados = [
-            ['position_id' => '6', 'name' => 'Luis Felipe Scolari', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Borja', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Dudu', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Ricardo Goulart', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Gustavo Scarpa', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Diogo Barbosa', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Mayke', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Felipe Melo', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Lucas Lima', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Edu Dracena', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Antônio Carlos', 'photo' => ''],
-            ['position_id' => '1', 'name' => 'Weverton', 'photo' => ''],
+            ['position_id' => '6', 'name' => 'Luis Felipe Scolari', 'photo' => 'pal/luis.png'],
+            ['position_id' => '5', 'name' => 'Borja', 'photo' => 'pal/borja.png'],
+            ['position_id' => '5', 'name' => 'Dudu', 'photo' => 'pal/dudu.png'],
+            ['position_id' => '5', 'name' => 'Ricardo Goulart', 'photo' => 'pal/ricardo.png'],
+            ['position_id' => '4', 'name' => 'Gustavo Scarpa', 'photo' => 'pal/gustavo.png'],
+            ['position_id' => '3', 'name' => 'Diogo Barbosa', 'photo' => 'pal/diogo.png'],
+            ['position_id' => '3', 'name' => 'Mayke', 'photo' => 'pal/mayke.png'],
+            ['position_id' => '4', 'name' => 'Felipe Melo', 'photo' => 'pal/felipe.png'],
+            ['position_id' => '4', 'name' => 'Lucas Lima', 'photo' => 'pal/lucas.png'],
+            ['position_id' => '2', 'name' => 'Edu Dracena', 'photo' => 'pal/edu.png'],
+            ['position_id' => '2', 'name' => 'Antônio Carlos', 'photo' => 'pal/anto.png'],
+            ['position_id' => '1', 'name' => 'Weverton', 'photo' => 'pal/weverton.png'],
         ];
         foreach ($dados as $dado)
             $team3->players()->create($dado);
 
-        $team4 = Team::create(['id' => 4, 'name' => 'Santos']);
+        $team4 = Team::create(['id' => 4, 'name' => 'Santos', 'photo' => 'san/logo.png']);
         $dados = [
-            ['position_id' => '6', 'name' => 'Sampaoli', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Soteldo', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Derlis Gonzalez', 'photo' => ''],
-            ['position_id' => '5', 'name' => 'Jean Mota', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Diego pituca', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Carlos Sanchez', 'photo' => ''],
-            ['position_id' => '4', 'name' => 'Orinho', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Gustavo Henrique', 'photo' => ''],
-            ['position_id' => '2', 'name' => 'Alison', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Vitor Ferraz', 'photo' => ''],
-            ['position_id' => '3', 'name' => 'Luiz Felipe', 'photo' => ''],
-            ['position_id' => '1', 'name' => 'Vanderlei', 'photo' => ''],
+            ['position_id' => '6', 'name' => 'Sampaoli', 'photo' => 'san/sampaoli.png'],
+            ['position_id' => '5', 'name' => 'Soteldo', 'photo' => 'san/yeferson.png'],
+            ['position_id' => '5', 'name' => 'Derlis Gonzalez', 'photo' => 'san/derlis.png'],
+            ['position_id' => '5', 'name' => 'Jean Mota', 'photo' => 'san/jean.png'],
+            ['position_id' => '4', 'name' => 'Diego pituca', 'photo' => 'san/diego.png'],
+            ['position_id' => '4', 'name' => 'Carlos Sanchez', 'photo' => 'san/carlos.png'],
+            ['position_id' => '4', 'name' => 'Orinho', 'photo' => 'san/orinho.png'],
+            ['position_id' => '2', 'name' => 'Gustavo Henrique', 'photo' => 'san/gustavo.png'],
+            ['position_id' => '2', 'name' => 'Alison', 'photo' => 'san/alisson.png'],
+            ['position_id' => '3', 'name' => 'Vitor Ferraz', 'photo' => 'san/victor.png'],
+            ['position_id' => '3', 'name' => 'Luiz Felipe', 'photo' => 'san/luiz.png'],
+            ['position_id' => '1', 'name' => 'Vanderlei', 'photo' => 'san/vanderley.png'],
         ];
         foreach ($dados as $dado)
             $team4->players()->create($dado);

@@ -32,16 +32,16 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th width="40"></th>
+                        <th width="100"></th>
                         <th>Jogador</th>
-                        <th width="150">Posição</th>
+                        <th width="100">Posição</th>
                         <th width="50"></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($team->players as $idx => $player)
                         <tr>
-                            <td><img class="img-fluid rounded" style="width: 100%;"
+                            <td><img class="img-fluid rounded" style="height: 80px;"
                                      src="{{ \Illuminate\Support\Facades\Storage::url("player/{$player->photo}") }}"
                                      lazy="loaded"></td>
                             <td>{{ $player->name }}</td>
@@ -68,9 +68,9 @@
             <table class="table table-bordered" id="playes">
                 <thead>
                 <tr>
-                    <th width="40"></th>
+                    <th width="100"></th>
                     <th>Jogador</th>
-                    <th width="150">Posição</th>
+                    <th width="100">Posição</th>
                     <th width="50"></th>
                 </tr>
                 </thead>

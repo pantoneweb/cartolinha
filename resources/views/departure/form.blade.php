@@ -8,15 +8,16 @@
                 <div class="col-lg-5">
 
                     <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <img class="img-fluid rounded" style="height: 43px;"
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-3">
+                            <img class="img-fluid rounded" style="height: 60px;"
                                  src="{{ \Illuminate\Support\Facades\Storage::url("team/{$team->photo}") }}"
                                  lazy="loaded">
                         </div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-9">
                             <h2 class="mb-3"><span>{{ $team->name }}</span></h2>
                             <div class="form-group">
-                                <input type="number" name="departure[{{ $team->id }}][gols]" class="form-control" placeholder="Quantidade de gols">
+                                <input type="number" name="departure[{{ $team->id }}][gols]" class="form-control"
+                                       placeholder="Quantidade de gols">
                             </div>
                         </div>
                     </div>
@@ -32,14 +33,14 @@
                         <tbody>
                         @foreach($team->players as $idx => $player)
                             <tr style="background: #f2f2f2;">
-                                <td><img class="img-fluid rounded" style="width: 100%;"
-                                         src="{{ \Illuminate\Support\Facades\Storage::url("player/{$player->photo}") }}"
-                                         lazy="loaded"></td>
-                                <td>{{ $player->name }}</td>
+                                <td rowspan="2"><img class="img-fluid rounded" style="width:80px; height: 110px;"
+                                                     src="{{ \Illuminate\Support\Facades\Storage::url("player/{$player->photo}") }}"
+                                                     lazy="loaded"></td>
+                                <td width="80%">{{ $player->name }}</td>
                                 <td>{{ $player->position->name }}</td>
                             </tr>
                             <tr>
-                                <td colspan="2" width="90%">
+                                <td>
                                     <select name="departure[{{ $team->id }}][{{ $player->id }}][]"
                                             class="form-control container-player">
                                         <option value="">Selecione</option>
