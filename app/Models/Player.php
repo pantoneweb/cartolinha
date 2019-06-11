@@ -19,6 +19,11 @@ class Player extends Model implements TableInterface
         return $this->belongsTo(Position::class);
     }
 
+    public function activies($departureId)
+    {
+        return $this->belongsToMany(Activity::class, 'players_has_activities', 'player_id', 'activity_id')->where('departure_id', $departureId);
+    }
+
     public function getTableHeaders()
     {
         return ['ID', 'Foto', 'Posição', 'Nome'];

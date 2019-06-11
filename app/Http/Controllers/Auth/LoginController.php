@@ -37,7 +37,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->redirectTo = Request()->route()->getPrefix() . '/home';
     }
 
     public function login(Request $request)
@@ -65,9 +64,16 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    protected function guard()
+    protected function attemptLogin(Request $request)
     {
-        $guard = Request()->route()->getPrefix();
-        return Auth::guard(str_replace('/', '', $guard));
+        if ($this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        )) {
+            $guard = (Auth::id() == 1) ? 'admin' : 'user';
+            Auth::guard($guard)->loginUsingId(Auth::id());
+            $this->redirectTo = '/' . $guard . '/home';
+            return true;
+        }
+        return false;
     }
 }

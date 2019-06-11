@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Departure;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

@@ -14,7 +14,10 @@
             @guest
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="">Escalar</a>
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('climb.index') }}">Escalar</a>
                 </li>
             @endguest
         </ul>

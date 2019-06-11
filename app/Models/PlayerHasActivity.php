@@ -17,4 +17,9 @@ class PlayerHasActivity extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class);
+    }
 }

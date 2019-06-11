@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = $this->user->paginate();
+        $data = $this->user->where('id', '>', 1)->paginate();
         return view("user.index", compact('data'));
     }
 

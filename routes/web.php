@@ -33,5 +33,7 @@ Route::prefix('user')->group(function () {
 
     Route::group(['middleware' => ['auth:user']], function () {
         Route::get('/home', 'HomeController@index')->name('home');
+
+        Route::resource('climb', 'ClimbController');
     });
 });

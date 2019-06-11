@@ -6,9 +6,6 @@
             <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
                 <h2 class="mb-5"><span>Usuários</span></h2>
             </div>
-            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                {!! Button::primary('+ Novo Usuário')->asLinkTo(route('user.create'))->extraSmall() !!}
-            </div>
         </div>
         <div class="table-responsive">
             {!!

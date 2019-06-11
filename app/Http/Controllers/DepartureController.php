@@ -48,17 +48,19 @@ class DepartureController extends Controller
         $departure1 = Departure::create([
             'home_team_id' => $departure[0]['teamId'],
             'guest_team_id' => $departure[1]['teamId'],
-            'home_team_goals' => $departure[0]['data']['gols'],
-            'guest_team_goals' => $departure[1]['data']['gols'],
-            'datetime' => Carbon::now()->format('Y-m-d H:i:s')
+            'home_team_goals' => $departure[0]['data']['gols'] ?? 0,
+            'guest_team_goals' => $departure[1]['data']['gols'] ?? 0,
+            'datetime_start' => Carbon::now()->format('Y-m-d H:i:s'),
+            'datetime_end' => Carbon::now()->addHour(1)->format('Y-m-d H:i:s')
         ]);
 
         $departure2 = Departure::create([
             'home_team_id' => $departure[2]['teamId'],
             'guest_team_id' => $departure[3]['teamId'],
-            'home_team_goals' => $departure[2]['data']['gols'],
-            'guest_team_goals' => $departure[3]['data']['gols'],
-            'datetime' => Carbon::now()->format('Y-m-d H:i:s')
+            'home_team_goals' => $departure[2]['data']['gols'] ?? 0,
+            'guest_team_goals' => $departure[3]['data']['gols'] ?? 0,
+            'datetime_start' => Carbon::now()->format('Y-m-d H:i:s'),
+            'datetime_end' => Carbon::now()->addHour(1)->format('Y-m-d H:i:s')
         ]);
 
         foreach ($departure as $idx => $team) {
@@ -66,13 +68,15 @@ class DepartureController extends Controller
                 if ($player == "gols")
                     continue;
                 foreach ($activities as $activity) {
-                    PlayerHasActivity::create([
-                        'player_id' => $player,
-                        'activity_id' => $activity,
-                        'departure_id' => ($idx < 2) ? $departure1->id : $departure2->id,
-                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-                    ]);
+                    if ($activity) {
+                        PlayerHasActivity::create([
+                            'player_id' => $player,
+                            'activity_id' => $activity,
+                            'departure_id' => ($idx < 2) ? $departure1->id : $departure2->id,
+                            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                        ]);
+                    }
                 }
             }
         }

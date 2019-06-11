@@ -36,6 +36,25 @@
             var $select = $("select[name='" + $(this).attr('data-select') + "']").first().clone();
             $("select[name='" + $(this).attr('data-select') + "']").parent().append($select);
         });
+
+        var $body = $('body');
+        $body.on('click', '.add-player', function () {
+            var playerId = $(this).attr('data-select');
+            var $input = $('<input type="hidden" name="player[]">').val(playerId);
+            $tr = $(this).closest('tr').clone();
+            $tr.find('td').last().find('button').removeClass('btn-primary add-player').addClass('btn-danger remove-player').html('x');
+            $tr.find('td').last().append($input);
+            $table = $('table#playes');
+            $table.find('#message').hide();
+            $table.find('tbody').append($tr);
+            $(this).hide();
+        });
+
+        $body.on('click', '.remove-player', function () {
+            var playerId = $(this).attr('data-select');
+            $('.player-' + playerId).html('+').show();
+            $(this).closest('tr').remove()
+        });
     });
 </script>
 </body>
