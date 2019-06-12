@@ -12373,3 +12373,14 @@ td.visible-print {
     height: auto;
   }
 }
+.footer_carosal {
+  height: 190px;
+}
+.footer_carosal .item img {
+  width: 80px !important;
+  height: auto !important;
+  margin: 0 auto;
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}

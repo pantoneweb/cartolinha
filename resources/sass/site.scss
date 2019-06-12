@@ -4,3 +4,15 @@
 @import "site/css/owl.theme.default.min.scss";
 @import "site/css/style.scss";
 @import "site/css/responsive.scss";
+
+.footer_carosal {
+  height: 190px;
+
+  .item img {
+    width: 80px !important;
+    height: auto !important;
+    margin: 0 auto;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
+}

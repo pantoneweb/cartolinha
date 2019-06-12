@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         \App\User::create([
             'name' => 'Rafael Silva',
-            'email' => 'user1@mailinator.com',
+            'email' => 'user1user1@mailinator.com',
             'password' => \Illuminate\Support\Facades\Hash::make('123456789'),
             'score' => 100
         ]);

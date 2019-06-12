@@ -32,32 +32,39 @@
                         </thead>
                         <tbody>
                         @foreach($team->players as $idx => $player)
-                            <tr style="background: #f2f2f2;">
-                                <td rowspan="2"><img class="img-fluid rounded" style="width:80px; height: 110px;"
-                                                     src="{{ \Illuminate\Support\Facades\Storage::url("player/{$player->photo}") }}"
-                                                     lazy="loaded"></td>
-                                <td width="80%">{{ $player->name }}</td>
-                                <td>{{ $player->position->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select name="departure[{{ $team->id }}][{{ $player->id }}][]"
-                                            class="form-control container-player">
-                                        <option value="">Selecione</option>
-                                        @foreach($activities as $activity)
-                                            <option value="{{ $activity->id }}">{{ $activity->name }}
-                                                ({{ $activity->score }} Pontos)
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary btn-block add"
-                                            data-select="departure[{{ $team->id }}][{{ $player->id }}][]">
-                                        +
-                                    </button>
-                                </td>
-                            </tr>
+                            @if($player->position->name == 'Tecnico')
+                                <tr style="background: #f2f2f2;">
+                                    <td></td>
+                                    <td colspan="2">{{ $player->name }} ({{ $player->position->name }})</td>
+                                </tr>
+                            @else
+                                <tr style="background: #f2f2f2;">
+                                    <td rowspan="2">
+                                        <img class="rounded" style="width:70px"
+                                             src="{{ \Illuminate\Support\Facades\Storage::url("player/{$player->photo}") }}"
+                                             lazy="loaded">
+                                    </td>
+                                    <td colspan="2">{{ $player->name }} ({{ $player->position->name }})</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="departure[{{ $team->id }}][{{ $player->id }}][]"
+                                                class="form-control container-player">
+                                            <option value="">Selecione</option>
+                                            @foreach($activities as $activity)
+                                                <option value="{{ $activity->id }}">{{ $activity->name }}
+                                                    ({{ $activity->score }} Pontos)
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-block add"
+                                                data-select="departure[{{ $team->id }}][{{ $player->id }}][]">
+                                            +
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
